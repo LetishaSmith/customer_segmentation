@@ -3,10 +3,10 @@ title: "Output 1-3"
 output: html_notebook
 ---
 ##### 1. Characterize the **customer segmentation** search results in a few sentences.       
-Issues addressed by customer segmentation datasets pertain to the categorization customers based upon personal demographics and purchasing behaviors. Grouping customers by shopper profile allows companies personalize campaigns to maintain consumer relationships. Ideally, the personalized campaigns will result in the customers purchasing more products or consuming more media from the site.
+Issues addressed by customer segmentation datasets pertain to the categorization of customers based upon personal demographics and purchasing behaviors. Grouping customers by shopper profile allows companies personalize campaigns to develop and maintain consumer relationships. Ideally, the personalized campaigns will result in the customers purchasing more products or consuming more media from the site.
 
 ##### 2. Select one of the resulting datasets, and explain your choice in a few sentences.      
-The mall customer segmentation stood out because variables were clearly documented in a way that would ease the interpretation of results. Furthermore, the clean data allowed me to focus my attention primarily on finding a clustering algorithm to segment the data. Lastly, in the past I have read articles about the challenges that malls are having with retaining customers given the increase in online shopping, so I am familiar with challenges that could be addressed with this data source. 
+The mall customer segmentation dataset stood out because variables were clearly documented in a way that would ease the interpretation of results. Furthermore, the clean data allowed me to focus my attention primarily on finding a clustering algorithm to segment the data. Lastly, in the past I have read articles about the challenges that malls are having with retaining customers given the increase in online shopping, so I am familiar with challenges that could be addressed with this data source. 
 
 ##### 3. Describe a relevant/interesting problem or question in a few sentences.         
 What are the profiles of shoppers at this mall? What types of shoppers frequent this mall?  
@@ -15,9 +15,9 @@ Shopper profiles can be used to personalize efforts to maintain and increase sho
 #### 4. Output4: Explain your approach to solving the problem.
 I want to use attributes to categorize similar customers. I don't have any intuition about the best number of categories to sort custmers into, so I will use a hierarchical clustering algorithm.    
 
-Given that dimensions are measured in differing units, I will use Manhattan distance to measure how similar customers are to one another. Then Ward's method will be used to aglomerate similar groups.     
+Given that dimensions are measured in differing units, I will use Manhattan distance to measure how similar customers are to one another. Then, Ward's method will be used to aglomerate similar groups.     
 
-After each customer has been placed in a category, then I will use decision trees to understand the rules used to combine customers into groups.  
+Once each customer has been placed in a category, I will use scatter plots to understand commonalities within groups.
 
 ##### Output5: Write code to solve the problem, and show the results.
 
