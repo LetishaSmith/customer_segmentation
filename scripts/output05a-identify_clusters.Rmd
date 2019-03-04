@@ -1,0 +1,74 @@
+---
+title: "Output 4"
+output: html_notebook
+---
+```{r load_packages}
+library(tidyverse)
+library(NbClust)
+library(colormap)
+```
+
+```{r input_data}
+df <- read_csv("../data/input/Mall_Customers.csv")
+rownames(df) = df$`CustomerID`
+```
+
+```{r explore_data, eval=FALSE}
+df %>%
+purrr::map(table, useNA = "ifany")
+```
+
+```{r clean_data}
+df <- df %>%
+      # gender converted from categorical to logical variable--indicatinng if the
+      # customer is female, so that gender differences can be quantified
+      mutate(female = Gender == "Female") %>% 
+      select(-`CustomerID`, -Gender)
+```
+
+
+```{r cluster}
+# 1. measure similarity between all pairs of customers
+metric = "manhattan"
+distance_matrix = dist(df, method= metric)
+
+# 2. group together customers with shared characteristics
+agglomerate = "ward.D"
+hcl <- hclust(distance_matrix, method=agglomerate)
+hcl
+
+# 3. identify the best number of groups to separate customers into
+optimal = NbClust(data = df, 
+                   distance = metric, 
+                   method = agglomerate, 
+                   index = "ch")
+cuts = optimal$Best.nc["Number_clusters"]
+```
+
+```{r visualize_clusters}
+# 1. visualize clusters with a dendrogram
+dendrogram <- plot(hcl,labels=F)
+# 2. select color palette to visualize each group
+pal <- colormap::colormap(colormap=colormaps$plasma, nshades=cuts, reverse = T)
+# 3. visualize clusters in the dendrogram 
+source("http://addictedtor.free.fr/packages/A2R/lastVersion/R/code.R")
+A2Rplot(hcl, k = cuts, 
+        boxes = FALSE, 
+        # col.up = "gray50", 
+        show.labels = F, 
+        col.down = pal)
+```
+
+matc each observation in the dataset to its respective group
+```{r segments}
+df <- df %>%
+      bind_cols(segments = clusters) 
+
+# look at breakdoen by group
+table(df$segments)
+```
+
+```{r save_data}
+write_csv(df, "../data/output/segmented-Mall_Customers.csv")
+```
+
