@@ -22,8 +22,6 @@ After each customer has been placed in a category, then I will use decision tree
 ##### Output5: Write code to solve the problem, and show the results.
 
 ##### Output6: Discuss what you found.    
-Gender does not explain differences in shopping patterns.
-
 Group 1:    
 * Annual Income  <  40k   
 * Spending Score <= 40
@@ -50,3 +48,4 @@ Group 6:
 * Annual Income >= 70k 
 * Spending Score < 40
 
+Gender does not explain differences in consumer patterns.
